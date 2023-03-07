@@ -4,7 +4,6 @@ import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
-// // Class Component
 const App = () => {
   console.log("render");
 
@@ -59,6 +58,9 @@ useEffect(() => {
   );
 };
 
+
+
+// Class Component
 
 // class App extends Component {
 //   constructor() {
