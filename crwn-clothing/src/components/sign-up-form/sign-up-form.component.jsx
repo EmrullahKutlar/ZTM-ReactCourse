@@ -42,7 +42,7 @@ const SignUpForm = () => {
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
-      if (error.code == "auth/email-already-in-use") {
+      if (error.code === "auth/email-already-in-use") {
         alert("That email address is already in use!");
       }
       console.log(error);
@@ -89,7 +89,7 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <ButtonComp type="submit">Sign In</ButtonComp>
+        <ButtonComp type="submit">Sign Up</ButtonComp>
       </form>
     </div>
   );
