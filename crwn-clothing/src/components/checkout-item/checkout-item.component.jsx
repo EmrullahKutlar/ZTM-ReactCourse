@@ -24,7 +24,6 @@ const CheckoutItem = ({ cartItem }) => {
           clearItemFromCart(cartItem);
         }}
       >
-        {" "}
         &#10005;
       </div>
     </div>

@@ -1,6 +1,6 @@
 import {
   createUserDocumentFromAuth,
-  signInWithGoogleRedirect,
+  // signInWithGoogleRedirect,
   auth,
 } from "../../utils/firebase/firebase.utils";
 import { useEffect } from "react";
@@ -16,7 +16,7 @@ const Authentication = () => {
       const res = await getRedirectResult(auth);
 
       if (res) {
-        const userDocRef = await createUserDocumentFromAuth(res.user);
+        await createUserDocumentFromAuth(res.user);
       }
     }
     fetchData();
