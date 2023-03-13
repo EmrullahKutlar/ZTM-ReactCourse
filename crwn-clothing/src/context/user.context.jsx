@@ -18,7 +18,6 @@ export const UserContext = createContext({
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      console.log("user", user);
       setCurrentUser(user);
     });
     return unsubscribe;
