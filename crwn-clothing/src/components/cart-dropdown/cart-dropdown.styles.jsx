@@ -8,15 +8,15 @@ import {
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 240px;
+  width: 260px;
   height: 340px;
   display: flex;
   flex-direction: column;
   padding: 20px;
   border: 1px solid black;
   background-color: white;
-  top: 90px;
-  right: 40px;
+  top: 6%;
+  right: 10rem;
   z-index: 5;
   ${BaseButton},
   ${GoogleSignInButton},
