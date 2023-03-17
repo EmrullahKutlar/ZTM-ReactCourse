@@ -1,6 +1,6 @@
 import "./cart-icon.styles.jsx";
 import { ReactComponent as ShoppingBag } from "../../assets/shopping-bag.svg";
-import { useContext } from "react";
+// import { useContext } from "react";
 // import { CartContext } from "../../context/cart.context";
 import { CartIconContainer, ItemCount } from './cart-icon.styles.jsx';
 import { useDispatch, useSelector } from "react-redux";
