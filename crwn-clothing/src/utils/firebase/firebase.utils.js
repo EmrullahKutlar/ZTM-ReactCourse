@@ -10,7 +10,16 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query,getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCpSo-fXlLkIvhO12Yxh-b2b34OnnVlBJY",
@@ -36,8 +45,10 @@ export const signInWithGoogleRedirect = () =>
 
 export const db = getFirestore();
 
-
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
   objectsToAdd.forEach((object) => {
@@ -45,7 +56,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     batch.set(docRef, object);
   });
   await batch.commit();
-}
+};
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
@@ -59,7 +70,6 @@ export const getCategoriesAndDocuments = async () => {
   // }, {});
   // return categoryMap;
 };
-
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -88,7 +98,8 @@ export const createUserDocumentFromAuth = async (
   }
 
   //if user exists, return user document reference
-  return userDocRef;
+  // return userDocRef;
+  return userDocSnapshot
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -107,4 +118,16 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
-  
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};

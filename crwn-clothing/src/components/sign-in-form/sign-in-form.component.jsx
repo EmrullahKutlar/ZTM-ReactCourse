@@ -1,11 +1,14 @@
 import { useState,  } from "react";
 import {
-  signInWithGooglePopup,
-  signInAuthWithEmailAndPassword,
+  // signInWithGooglePopup,
+  // signInAuthWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
 import ButtonComp , {BUTTON_TYPE_CLASSES}from "../button/button.component";
+
+import { useDispatch } from "react-redux";
+import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: "",
@@ -15,6 +18,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +33,8 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      await signInAuthWithEmailAndPassword(email, password);
+      // await signInAuthWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/wrong-password") {
@@ -40,7 +46,8 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    // await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
   return (
